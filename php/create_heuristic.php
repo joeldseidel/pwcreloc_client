@@ -1,5 +1,4 @@
 <?php
-var_dump($_GET);
 $demo_key = $_GET['demo_key_select'];
 $mag_pref = $_GET['preference'];
 $weight = $_GET['weight_entry_select'];
