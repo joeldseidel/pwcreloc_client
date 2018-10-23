@@ -6,16 +6,10 @@ $weight = $_GET['weight_entry_select'];
 
 $dbConn = new mysqli("localhost" , "qoltoolx", "qolpass", "qoltoolx_qtool");
 
-for($i = 0; $i < 3; $i++){
-    $demo_val = get_demo_val($demo_key, $i, $dbConn);
-}
+create_heuristic_record($demo_key, $mag_pref, $weight, $dbConn);
 
-function get_demo_val($demo_key, $location_id, $dbConn){
-    $get_demo_key_stmt = $dbConn->prepare("SELECT val_format, value FROM demo_vals WHERE demo_key_id = ? AND location_id = ?");
-    $get_demo_key_stmt->bind_param("ii", $demo_key, $location_id);
-    $get_demo_key_stmt->execute();
-    $get_demo_key_stmt->bind_result();
-    $get_demo_key_stmt->fetch($val_format, $value);
-    $get_demo_key_stmt->close();
-    return $value;
+function create_heuristic_record($demo_key, $mag_pref, $weight, $dbConn){
+    $create_heuristic_stmt = $dbConn->prepare("INSERT INTO heuristics (demo_key, mag_pref, weight) VALUES (?, ?, ?)");
+    $create_heuristic_stmt->bind_param("iii", $demo_key, $mag_pref, $weight);
+    $create_heuristic_stmt->execute();
 }
