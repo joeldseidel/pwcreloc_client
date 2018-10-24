@@ -53,4 +53,7 @@
         </select>
         <input type="submit" value="Submit">
     </form>
+    <form action="./php/calc_heuristics.php" method="get">
+        <input type="submit" value="Calculate Fit Index">
+    </form>
 </body>
