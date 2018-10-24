@@ -3,18 +3,22 @@ $optimal_score = 0;
 $heuristic_array = array();
 
 $dbConn = new mysqli("localhost" , "qoltoolx", "qolpass", "qoltoolx_qtool");
-
+$dbConn->query("DELETE FROM loc_heuristic_score");
 $get_heuristics_result = $dbConn->query("SELECT heuristic_id, demo_key, mag_pref, weight FROM heuristics");
 while($heuristic_obj = $get_heuristics_result->fetch_object()){
     array_push($heuristic_array, $heuristic_obj);
 }
-$optimal_score += calc_heuristic_scores($heuristic_array, $dbConn);
+$optimal_score += round(calc_heuristic_scores($heuristic_array, $dbConn));
 $location_scores_array = get_location_scores_object($heuristic_array, $dbConn);
 foreach($location_scores_array as $location_score){
-    echo "$location_score->name scored $location_score->total_score out of a max of $optimal_score\n";
-    $fit_index = $location_score->total_score / $optimal_score * 100;
-    echo "$location_score->name has a fit index of $fit_index%";
+    $fit_index = round($location_score->total_score / $optimal_score * 100);
+    $location_score->total_score = round($location_score->total_score, 2);
+    echo "<div class='row score_result mb-2 p-1'>";
+    echo    "<p class='d-block w-100 raw_score_disp'>$location_score->name scored $location_score->total_score out of a max of $optimal_score</p>";
+    echo    "<p class='d-block w-100 fit_index_disp'>$location_score->name has a fit index of $fit_index</p>";
+    echo "</div>";
 }
+
 
 function get_demo_val($demo_key, $location_id, $dbConn){
     $get_demo_key_stmt = $dbConn->prepare("SELECT val_format, value FROM demo_vals WHERE demo_key_id = ? AND location_id = ?");
