@@ -39,8 +39,8 @@
             <option value="27">Violent Crimes per 100,000 people</option>
             <option value="28">Property Crimes per 100,000 people</option>
         </select><br>
-        <input type="radio" name="preference" value="higher">Prefer Higher<br>
-        <input type="radio" name="preference" value="lower">Prefer Lower<br>
+        <input type="radio" name="preference" value="1">Prefer Higher<br>
+        <input type="radio" name="preference" value="-1">Prefer Lower<br>
         Select Weighting:
         <select name="weight_entry_select">
             <option value="1">1</option>
