@@ -13,7 +13,7 @@ $location_scores_array = get_location_scores_object($heuristic_array, $dbConn);
 foreach($location_scores_array as $location_score){
     $fit_index = round($location_score->total_score / $optimal_score * 100);
     $location_score->total_score = round($location_score->total_score, 2);
-    echo "<div class='row score_result mb-2 p-1'>";
+    echo "<div class='row score_result mb-2 p-1' data-loc-id='$location_score->loc_id'>";
     echo    "<p class='d-block w-100 raw_score_disp'>$location_score->name scored $location_score->total_score out of a max of $optimal_score</p>";
     echo    "<p class='d-block w-100 fit_index_disp'>$location_score->name has a fit index of $fit_index</p>";
     echo "</div>";

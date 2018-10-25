@@ -6,9 +6,16 @@
 #createheuristicform{
     border: 1px solid #007bff;
     border-radius: 10px;
-    margin-top: 10px;
 }
 #main-cont{
     background-color: white;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+#table_cont{
+    height:285px;
+    overflow-y:scroll;
+}
+#heuristic_listing_cont{
+    border: 1px solid #007bff;
+    border-radius: 10px;
 }

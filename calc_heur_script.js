@@ -9,3 +9,14 @@ $('#calc_button').click(function(){
         }
     })
 });
+$(document).ready(function(){
+    var heuristic_display = $('#heuristic_table');
+    heuristic_display.empty();
+    $.ajax({
+        type:"POST",
+        url:"./php/get_heuristics_listing.php",
+        success: function(data){
+            heuristic_display.append(data);
+        }
+    });
+});
